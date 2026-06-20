@@ -168,82 +168,26 @@
   .sec-title { font-family: var(--font-display); font-size: 1.9rem; font-weight: 800; letter-spacing: -1px; color: #fff; }
 
   /* ── PLANS ── */
-  /* ── CATALOG / EM ALTA ── */
-  .catalog-section { margin-bottom: 72px; }
-  .catalog-scroll {
-    display: flex; gap: 14px; overflow-x: auto;
-    padding-bottom: 8px; scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
-  }
-  .catalog-scroll::-webkit-scrollbar { height: 6px; }
-  .catalog-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 10px; }
-  .catalog-scroll::-webkit-scrollbar-track { background: transparent; }
-
-  .title-card {
-    flex: 0 0 150px; width: 150px;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: default;
-    border: 1px solid var(--border);
-    transition: transform var(--transition), border-color var(--transition);
-  }
-  .title-card:hover { transform: translateY(-4px) scale(1.02); border-color: var(--border2); }
-  .title-poster {
-    height: 210px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-    padding: 14px;
-    text-align: center;
-  }
-  .title-poster::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%);
-  }
-  .title-genre {
-    position: absolute; top: 10px; left: 10px;
-    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    background: rgba(0,0,0,0.4); color: rgba(255,255,255,0.85);
-    padding: 3px 8px; border-radius: 20px;
-    backdrop-filter: blur(4px);
-    z-index: 2;
-  }
-  .title-name {
-    font-family: var(--font-display); font-weight: 800; font-size: 1.05rem;
-    color: #fff; line-height: 1.15; letter-spacing: -0.3px;
-    position: relative; z-index: 2;
-  }
-  .title-platform-bar {
-    padding: 8px 12px;
-    background: var(--card);
-    display: flex; align-items: center; gap: 6px;
-  }
-  .title-platform-bar .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .title-platform-bar span { font-size: 0.68rem; color: var(--muted); font-weight: 500; }
-
-  .skeleton-pulse {
-    background: linear-gradient(90deg, var(--card) 25%, var(--card2) 50%, var(--card) 75%);
-    background-size: 200% 100%;
-    animation: skeleton-shimmer 1.4s infinite;
-  }
-  @keyframes skeleton-shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-  .skeleton-card .title-platform-bar span { color: var(--muted2); }
-
-  .title-rating {
-    position: absolute; top: 10px; right: 10px;
-    display: flex; align-items: center; gap: 3px;
-    font-size: 0.65rem; font-weight: 700;
-    background: rgba(0,0,0,0.4); color: #ffd84d;
-    padding: 3px 7px; border-radius: 20px;
-    backdrop-filter: blur(4px);
-    z-index: 2;
-  }
-  .title-rating svg { width: 9px; height: 9px; fill: #ffd84d; }
-
   .plans-section { margin-bottom: 72px; }
+
+  /* ── GUARANTEE BANNER ── */
+  .guarantee-banner {
+    display: flex; align-items: center; gap: 18px;
+    background: linear-gradient(135deg, rgba(34,197,94,0.08) 0%, transparent 65%);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: var(--radius);
+    padding: 22px 28px;
+    margin-top: 24px;
+  }
+  .guarantee-icon-wrap {
+    width: 50px; height: 50px; border-radius: 14px; flex-shrink: 0;
+    background: rgba(34,197,94,0.12);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--green);
+  }
+  .guarantee-icon-wrap svg { width: 26px; height: 26px; }
+  .guarantee-text strong { display: block; font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 3px; }
+  .guarantee-text span { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
   .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
 
   .plan-card {
@@ -513,6 +457,7 @@
     .security-card { padding: 20px; }
     .wa-cta { flex-direction: column; text-align: center; }
     .wa-arrow { display: none; }
+    .guarantee-banner { flex-direction: column; text-align: center; padding: 20px; }
     .trust-strip { gap: 16px; }
     .sum-total-chip { margin-left: 0; }
   }
@@ -574,23 +519,6 @@
 </div>
 
 <!-- PLANS -->
-<!-- CATALOG / EM ALTA — dados reais via TMDB API -->
-<section class="catalog-section">
-  <div class="wrap">
-    <div class="sec-header">
-      <div class="sec-eyebrow">Catálogo · actualizado automaticamente</div>
-      <div class="sec-title">Em alta esta semana</div>
-    </div>
-    <div class="catalog-scroll" id="catalog-scroll">
-      <!-- preenchido via JS a partir da API TMDB -->
-      <div class="title-card skeleton-card"><div class="title-poster skeleton-pulse"></div><div class="title-platform-bar"><span>A carregar…</span></div></div>
-      <div class="title-card skeleton-card"><div class="title-poster skeleton-pulse"></div><div class="title-platform-bar"><span>A carregar…</span></div></div>
-      <div class="title-card skeleton-card"><div class="title-poster skeleton-pulse"></div><div class="title-platform-bar"><span>A carregar…</span></div></div>
-      <div class="title-card skeleton-card"><div class="title-poster skeleton-pulse"></div><div class="title-platform-bar"><span>A carregar…</span></div></div>
-    </div>
-  </div>
-</section>
-
 <section class="plans-section" id="planos">
   <div class="wrap">
     <div class="sec-header">
@@ -643,6 +571,16 @@
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Activação imediata</li>
         </ul>
         <button class="plan-select-btn">Seleccionar este plano</button>
+      </div>
+    </div>
+
+    <div class="guarantee-banner">
+      <div class="guarantee-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <div class="guarantee-text">
+        <strong>Garantia de satisfação</strong>
+        <span>Se o acesso não funcionar como prometido, resolvemos imediatamente ou devolvemos o valor pago. Sem letras pequenas.</span>
       </div>
     </div>
   </div>
@@ -857,91 +795,13 @@
 <footer>
   <div class="wrap">
     <strong>StreamVibe</strong> · Streaming premium em Moçambique<br>
-    Suporte: WhatsApp <strong>+258 83 374 1699</strong>
+    Suporte: WhatsApp <strong>+258 87 845 7675</strong>
   </div>
 </footer>
 
 <script>
-  // ── CATÁLOGO DINÂMICO (TMDB API) ───────────────────────────────────────
-  // Dados (títulos, sinopses, géneros, notas) vêm da API pública da TMDB.
-  // Sem posters/artwork oficiais — usamos gradientes próprios por design,
-  // para evitar reproduzir material protegido por direitos de autor.
-  //
-  // Chave gratuita da TMDB (v3). Para obter a tua própria chave grátis:
-  // https://www.themoviedb.org/settings/api
-  const TMDB_API_KEY = 'COLOCA_AQUI_A_TUA_CHAVE_TMDB';
-
-  const GRADIENTS = [
-    'linear-gradient(135deg,#3a0d0d,#7a1414,#1a0505)',
-    'linear-gradient(135deg,#0d1f3a,#14497a,#05121a)',
-    'linear-gradient(135deg,#3a2a0d,#7a5414,#1a0f05)',
-    'linear-gradient(135deg,#1f0d3a,#49147a,#12051a)',
-    'linear-gradient(135deg,#0d3a1f,#147a49,#051a12)',
-    'linear-gradient(135deg,#3a0d2a,#7a1454,#1a0512)',
-    'linear-gradient(135deg,#0d2a3a,#147a7a,#051a1a)',
-    'linear-gradient(135deg,#2a0d3a,#54147a,#0f051a)',
-  ];
-
-  const GENRE_MAP = {
-    28:'Acção', 12:'Aventura', 16:'Animação', 35:'Comédia', 80:'Crime',
-    99:'Documentário', 18:'Drama', 10751:'Família', 14:'Fantasia',
-    36:'História', 27:'Terror', 10402:'Música', 9648:'Mistério',
-    10749:'Romance', 878:'Ficção', 53:'Suspense', 10752:'Guerra',
-    37:'Western', 10759:'Acção', 10765:'Sci-Fi'
-  };
-
-  async function loadCatalog() {
-    const container = document.getElementById('catalog-scroll');
-    if (!TMDB_API_KEY || TMDB_API_KEY === 'COLOCA_AQUI_A_TUA_CHAVE_TMDB') {
-      console.warn('StreamVibe: configure a tua chave TMDB para activar o catálogo dinâmico.');
-      return; // mantém skeleton; evita chamadas com chave inválida
-    }
-    try {
-      const res = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${TMDB_API_KEY}&language=pt-PT`);
-      if (!res.ok) throw new Error('TMDB request failed: ' + res.status);
-      const data = await res.json();
-      const items = (data.results || []).filter(i => i.title || i.name).slice(0, 10);
-      if (!items.length) throw new Error('Sem resultados');
-      renderCatalog(items);
-    } catch (err) {
-      console.error('Erro ao carregar catálogo TMDB:', err);
-      // Mantém os cards skeleton visíveis silenciosamente em caso de falha,
-      // para não mostrar um estado de erro feio ao cliente final.
-    }
-  }
-
-  function renderCatalog(items) {
-    const container = document.getElementById('catalog-scroll');
-    container.innerHTML = '';
-    items.forEach((item, i) => {
-      const title = item.title || item.name;
-      const isTV = item.media_type === 'tv';
-      const genreIds = item.genre_ids || [];
-      const genreName = genreIds.map(g => GENRE_MAP[g]).filter(Boolean)[0] || (isTV ? 'Série' : 'Filme');
-      const rating = item.vote_average ? item.vote_average.toFixed(1) : null;
-      const gradient = GRADIENTS[i % GRADIENTS.length];
-      const platformLabel = isTV ? 'Série' : 'Filme';
-
-      const card = document.createElement('div');
-      card.className = 'title-card';
-      card.innerHTML = `
-        <div class="title-poster" style="background:${gradient};" title="${(item.overview || '').replace(/"/g,'')}">
-          ${rating ? `<div class="title-rating"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${rating}</div>` : ''}
-          <div class="title-genre">${platformLabel}</div>
-          <div class="title-name">${title}</div>
-        </div>
-        <div class="title-platform-bar"><span class="dot" style="background:${isTV ? 'var(--red2)' : 'var(--blue2)'}"></span><span>${platformLabel} · ${genreName}</span></div>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  loadCatalog();
-</script>
-
-<script>
   // Número do administrador StreamVibe (sem + e sem espaços)
-  const ADMIN_WA = '258833741699';
+  const ADMIN_WA = '258878457675';
 
   let cur = null;
   const planData = {
