@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="StreamVibe – Telas de Streaming Premium em Moçambique. Netflix e Prime Video ao menor preço, com perfil exclusivo e PIN de segurança. Pague por M-Pesa ou banco.">
+<title>StreamVibe – Streaming Premium em Moçambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0b0b0f;
+    --bg2: #111118;
+    --bg3: #17171f;
+    --card: #1c1c26;
+    --card2: #222230;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text: #f0f0f5;
+    --muted: #8888a0;
+    --muted2: #5a5a72;
+    --red: #e5333a;
+    --red2: #ff4d54;
+    --red-glow: rgba(229,51,58,0.18);
+    --blue: #2389da;
+    --blue2: #3da0f5;
+    --gold: #e8961e;
+    --gold2: #fdb040;
+    --green: #22c55e;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --font: 'Inter', sans-serif;
+    --font-display: 'Syne', sans-serif;
+    --transition: 0.18s ease;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11,11,15,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: -0.5px; color: var(--text); }
+  .brand span { color: var(--red2); }
+  .nav-cta {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--red); color: #fff;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 7px 16px; border-radius: 30px;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .nav-cta:hover { background: var(--red2); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 80px 0 70px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-glow {
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse at top, rgba(229,51,58,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--red2); background: var(--red-glow);
+    border: 1px solid rgba(229,51,58,0.25);
+    padding: 5px 14px; border-radius: 30px;
+    margin-bottom: 24px;
+  }
+  .hero-badge::before { content: '●'; font-size: 7px; animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  .hero h1 em { color: var(--red2); font-style: normal; }
+
+  .hero p {
+    font-size: 1rem; color: var(--muted);
+    max-width: 420px; margin: 0 auto 36px; line-height: 1.65;
+  }
+
+  .hero-buttons { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--red); color: #fff;
+    font-size: 0.9rem; font-weight: 600;
+    padding: 13px 28px; border-radius: 30px;
+    border: none; cursor: pointer;
+    transition: all var(--transition);
+    box-shadow: 0 0 24px rgba(229,51,58,0.25);
+  }
+  .btn-primary:hover { background: var(--red2); transform: translateY(-2px); box-shadow: 0 0 36px rgba(229,51,58,0.38); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--muted);
+    font-size: 0.9rem; font-weight: 500;
+    padding: 13px 24px; border-radius: 30px;
+    border: 1px solid var(--border2); cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+  .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+
+  /* ── TRUST STRIP ── */
+  .trust-strip {
+    display: flex; align-items: center; justify-content: center;
+    gap: 28px; flex-wrap: wrap;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 72px;
+  }
+  .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--muted); }
+  .trust-item svg { width: 16px; height: 16px; color: var(--red2); flex-shrink: 0; }
+  .trust-item strong { color: var(--text); }
+
+  /* ── SECTION HEADER ── */
+  .sec-header { text-align: center; margin-bottom: 40px; }
+  .sec-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .sec-title { font-family: var(--font-display); font-size: 1.9rem; font-weight: 800; letter-spacing: -1px; color: #fff; }
+
+  /* ── PLANS ── */
+  /* ── CATALOG / EM ALTA ── */
+  .catalog-section { margin-bottom: 72px; }
+  .catalog-scroll {
+    display: flex; gap: 14px; overflow-x: auto;
+    padding-bottom: 8px; scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .catalog-scroll::-webkit-scrollbar { height: 6px; }
+  .catalog-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 10px; }
+  .catalog-scroll::-webkit-scrollbar-track { background: transparent; }
+
+  .title-card {
+    flex: 0 0 150px; width: 150px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: default;
+    border: 1px solid var(--border);
+    transition: transform var(--transition), border-color var(--transition);
+  }
+  .title-card:hover { transform: translateY(-4px) scale(1.02); border-color: var(--border2); }
+  .title-poster {
+    height: 210px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    padding: 14px;
+    text-align: center;
+  }
+  .title-poster::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%);
+  }
+  .title-genre {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    background: rgba(0,0,0,0.4); color: rgba(255,255,255,0.85);
+    padding: 3px 8px; border-radius: 20px;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+  }
+  .title-name {
+    font-family: var(--font-display); font-weight: 800; font-size: 1.05rem;
+    color: #fff; line-height: 1.15; letter-spacing: -0.3px;
+    position: relative; z-index: 2;
+  }
+  .title-platform-bar {
+    padding: 8px 12px;
+    background: var(--card);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .title-platform-bar .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .title-platform-bar span { font-size: 0.68rem; color: var(--muted); font-weight: 500; }
+
+  .skeleton-pulse {
+    background: linear-gradient(90deg, var(--card) 25%, var(--card2) 50%, var(--card) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.4s infinite;
+  }
+  @keyframes skeleton-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .skeleton-card .title-platform-bar span { color: var(--muted2); }
+
+  .title-rating {
+    position: absolute; top: 10px; right: 10px;
+    display: flex; align-items: center; gap: 3px;
+    font-size: 0.65rem; font-weight: 700;
+    background: rgba(0,0,0,0.4); color: #ffd84d;
+    padding: 3px 7px; border-radius: 20px;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+  }
+  .title-rating svg { width: 9px; height: 9px; fill: #ffd84d; }
+
+  .plans-section { margin-bottom: 72px; }
+  .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+
+  .plan-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  }
+  .plan-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+  }
+  .plan-card:hover { border-color: var(--border2); transform: translateY(-3px); }
+  .plan-card.active { transform: translateY(-3px); }
+
+  .plan-card.nf::before { background: var(--red2); }
+  .plan-card.pv::before { background: var(--blue2); }
+  .plan-card.cb::before { background: var(--gold2); }
+
+  .plan-card.nf.active { border-color: var(--red); box-shadow: 0 0 32px rgba(229,51,58,0.15); }
+  .plan-card.pv.active { border-color: var(--blue); box-shadow: 0 0 32px rgba(35,137,218,0.15); }
+  .plan-card.cb.active { border-color: var(--gold); box-shadow: 0 0 32px rgba(232,150,30,0.15); }
+
+  .plan-best {
+    position: absolute; top: 16px; right: 16px;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px;
+    background: rgba(232,150,30,0.15); color: var(--gold2);
+    border: 1px solid rgba(232,150,30,0.3);
+  }
+  .plan-logo { font-family: var(--font-display); font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+  .plan-logo.red { color: var(--red2); }
+  .plan-logo.blue { color: var(--blue2); }
+  .plan-logo.gold { color: var(--gold2); }
+  .plan-sub { font-size: 0.75rem; color: var(--muted2); margin-bottom: 20px; }
+
+  .plan-price {
+    font-family: var(--font-display);
+    font-size: 2.6rem; font-weight: 800; color: #fff;
+    letter-spacing: -2px; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .plan-price sup { font-size: 1rem; font-weight: 500; letter-spacing: 0; vertical-align: top; margin-top: 8px; margin-right: 2px; }
+  .plan-price-note { font-size: 0.72rem; color: var(--muted2); margin-bottom: 22px; }
+
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
+  .plan-features li { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--muted); }
+  .plan-features li .check { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .plan-features li .check svg { width: 10px; height: 10px; }
+  .nf .check { background: rgba(229,51,58,0.15); color: var(--red2); }
+  .pv .check { background: rgba(35,137,218,0.15); color: var(--blue2); }
+  .cb .check { background: rgba(232,150,30,0.15); color: var(--gold2); }
+
+  .plan-select-btn {
+    width: 100%; padding: 11px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem; font-weight: 600;
+    border: 1px solid var(--border2);
+    background: transparent; color: var(--muted);
+    cursor: pointer; transition: all var(--transition);
+  }
+  .plan-card.active .plan-select-btn { color: #fff; border-color: transparent; }
+  .plan-card.nf.active .plan-select-btn { background: var(--red); box-shadow: 0 0 18px rgba(229,51,58,0.3); }
+  .plan-card.pv.active .plan-select-btn { background: var(--blue); box-shadow: 0 0 18px rgba(35,137,218,0.3); }
+  .plan-card.cb.active .plan-select-btn { background: var(--gold); box-shadow: 0 0 18px rgba(232,150,30,0.3); }
+  .plan-card:not(.active) .plan-select-btn:hover { background: var(--card2); color: var(--text); }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { margin-bottom: 72px; }
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .how-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .how-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem; font-weight: 800;
+    color: var(--red2); opacity: 0.25;
+    line-height: 1; margin-bottom: 12px;
+  }
+  .how-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--red-glow); border: 1px solid rgba(229,51,58,0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px; color: var(--red2);
+  }
+  .how-icon svg { width: 22px; height: 22px; }
+  .how-title { font-size: 0.9rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .how-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+
+  /* ── PAYMENT SECTION ── */
+  .pay-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 72px;
+    display: none;
+  }
+  .pay-section.visible { display: block; }
+
+  .pay-header { padding: 28px 32px 0; }
+  .pay-header h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .pay-header p { font-size: 0.82rem; color: var(--muted); }
+
+  .summary-bar {
+    display: flex; align-items: center; gap: 12px;
+    flex-wrap: wrap;
+    background: var(--bg3);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 14px 32px; margin-top: 20px;
+  }
+  .sum-chip {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 0.78rem; color: var(--muted); padding: 4px 12px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+  }
+  .sum-chip strong { color: var(--text); }
+  .sum-total-chip {
+    margin-left: auto; font-family: var(--font-display);
+    font-size: 1.3rem; font-weight: 800; color: #fff; letter-spacing: -1px;
+  }
+
+  .pay-body { padding: 28px 32px; }
+  .pay-tabs { display: flex; gap: 10px; margin-bottom: 24px; }
+  .ptab {
+    flex: 1; padding: 11px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg3);
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--muted);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    cursor: pointer; transition: all var(--transition);
+  }
+  .ptab:hover { border-color: var(--border2); color: var(--text); }
+  .ptab.on { background: var(--red-glow); border-color: rgba(229,51,58,0.35); color: var(--red2); }
+  .ptab svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  .info-block {
+    background: var(--bg3);
+    border-left: 3px solid var(--red);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 14px 16px;
+    font-size: 0.8rem; color: var(--muted);
+    line-height: 1.65; margin-bottom: 20px;
+  }
+  .info-block strong { color: var(--text); }
+
+  .form-grid { display: flex; flex-direction: column; gap: 14px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .flabel { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .finput {
+    padding: 11px 15px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg3);
+    font-size: 0.9rem; font-family: var(--font);
+    color: var(--text); outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .finput::placeholder { color: var(--muted2); }
+  .finput:focus { border-color: rgba(229,51,58,0.5); box-shadow: 0 0 0 3px rgba(229,51,58,0.08); }
+
+  .submit-btn {
+    width: 100%; padding: 14px;
+    background: var(--red); color: #fff;
+    font-size: 0.92rem; font-weight: 700; letter-spacing: 0.03em;
+    border: none; border-radius: var(--radius-sm);
+    cursor: pointer; margin-top: 6px;
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    transition: all var(--transition);
+    box-shadow: 0 0 24px rgba(229,51,58,0.22);
+  }
+  .submit-btn:hover { background: var(--red2); box-shadow: 0 0 36px rgba(229,51,58,0.35); transform: translateY(-1px); }
+  .submit-btn svg { width: 18px; height: 18px; }
+
+  /* ── SUCCESS ── */
+  .success-box {
+    display: none; text-align: center;
+    padding: 64px 32px;
+  }
+  .success-box.on { display: block; }
+  .suc-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; color: var(--green);
+  }
+  .suc-icon svg { width: 32px; height: 32px; }
+  .suc-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .suc-sub { font-size: 0.85rem; color: var(--muted); max-width: 300px; margin: 0 auto 24px; line-height: 1.6; }
+
+  /* ── SECURITY ── */
+  .security-section { margin-bottom: 72px; }
+  .security-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+  }
+  .sec-list { display: flex; flex-direction: column; gap: 12px; }
+  .sec-item { display: flex; align-items: flex-start; gap: 13px; }
+  .sec-item-icon {
+    width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+  }
+  .si-green { background: rgba(34,197,94,0.1); color: var(--green); }
+  .si-red { background: rgba(229,51,58,0.1); color: var(--red2); }
+  .si-yellow { background: rgba(232,150,30,0.1); color: var(--gold2); }
+  .sec-item-icon svg { width: 18px; height: 18px; }
+  .sec-item-text strong { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .sec-item-text span { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── WHATSAPP CTA ── */
+  .wa-cta {
+    background: linear-gradient(135deg, rgba(37,211,102,0.08) 0%, transparent 60%);
+    border: 1px solid rgba(37,211,102,0.18);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    display: flex; align-items: center; gap: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 48px;
+    transition: all var(--transition);
+  }
+  .wa-cta:hover { border-color: rgba(37,211,102,0.35); transform: translateY(-2px); }
+  .wa-icon-wrap {
+    width: 54px; height: 54px; border-radius: 15px; flex-shrink: 0;
+    background: rgba(37,211,102,0.12);
+    display: flex; align-items: center; justify-content: center;
+    color: #25d366;
+  }
+  .wa-icon-wrap svg { width: 28px; height: 28px; }
+  .wa-text strong { display: block; font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .wa-text span { font-size: 0.8rem; color: var(--muted); }
+  .wa-arrow { margin-left: auto; color: var(--muted2); }
+  .wa-arrow svg { width: 22px; height: 22px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+    text-align: center;
+    font-size: 0.75rem; color: var(--muted2);
+  }
+  footer strong { color: var(--muted); }
+
+  /* ── FORM PANEL HIDE ── */
+  .f-panel { display: none; }
+  .f-panel.on { display: flex; flex-direction: column; gap: 14px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 560px) {
+    .hero { padding: 56px 0 50px; }
+    .pay-header { padding: 20px 20px 0; }
+    .summary-bar { padding: 12px 20px; }
+    .pay-body { padding: 20px; }
+    .security-card { padding: 20px; }
+    .wa-cta { flex-direction: column; text-align: center; }
+    .wa-arrow { display: none; }
+    .trust-strip { gap: 16px; }
+    .sum-total-chip { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">Stream<span>Vibe</span></div>
+    <a href="#planos" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Ver planos
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="hero-badge">Disponível em Moçambique</div>
+    <h1>Streaming premium<br><em>ao seu alcance</em></h1>
+    <p>Netflix e Prime Video com qualidade 4K, perfil exclusivo no seu nome e PIN de segurança pessoal. Activação imediata.</p>
+    <div class="hero-buttons">
+      <a href="#planos" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Escolher plano
+      </a>
+      <a href="https://chat.whatsapp.com/GD6XQW3BacO10Ct3v1nl9t" target="_blank" class="btn-ghost">
+        Grupo WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="wrap">
+  <div class="trust-strip">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span><strong>100+</strong> clientes satisfeitos</span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>Activação em <strong>menos de 1h</strong></span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <span>Perfil com <strong>PIN exclusivo</strong></span>
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.63 19.79 19.79 0 010 .98 2 2 0 012 .98h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.72-.72a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span>Suporte via <strong>WhatsApp</strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- PLANS -->
+<!-- CATALOG / EM ALTA — dados reais via TMDB API -->
+<section class="catalog-section">
+  <div class="wrap">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Catálogo · actualizado automaticamente</div>
+      <div class="sec-title">Em alta esta semana</div>
+    </div>
+    <div class="catalog-scroll" id="catalog-scroll">
+      <!-- preenchido via JS a partir da API TMDB -->
+      <div class="title-card skeleton-card"><div class="title-poster skeleton-pulse"></div><div class="title-platform-bar"><span>A carregar…</span></div></div>
+      <div class="title-card skeleton-card"><div class="title-poster skeleton-pulse"></div><div class="title-platform-bar"><span>A carregar…</span></div></div>
+      <div class="title-card skeleton-card"><div class="title-poster skeleton-pulse"></div><div class="title-platform-bar"><span>A carregar…</span></div></div>
+      <div class="title-card skeleton-card"><div class="title-poster skeleton-pulse"></div><div class="title-platform-bar"><span>A carregar…</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="plans-section" id="planos">
+  <div class="wrap">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Planos · válidos 30 dias</div>
+      <div class="sec-title">Escolha o seu pacote</div>
+    </div>
+
+    <div class="plans-grid">
+      <!-- Netflix -->
+      <div class="plan-card nf" id="pc-nf" onclick="selectPlan('nf')">
+        <div class="plan-logo red">NETFLIX</div>
+        <div class="plan-sub">1 tela 4K Ultra HD · 30 dias</div>
+        <div class="plan-price"><sup>MZN</sup>279</div>
+        <div class="plan-price-note">por mês</div>
+        <ul class="plan-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Qualidade 4K Ultra HD</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Perfil exclusivo no seu nome</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>PIN de segurança pessoal</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Activação imediata</li>
+        </ul>
+        <button class="plan-select-btn">Seleccionar este plano</button>
+      </div>
+
+      <!-- Prime Video -->
+      <div class="plan-card pv" id="pc-pv" onclick="selectPlan('pv')">
+        <div class="plan-logo blue">prime video</div>
+        <div class="plan-sub">1 tela HD/4K · 30 dias</div>
+        <div class="plan-price"><sup>MZN</sup>239</div>
+        <div class="plan-price-note">por mês</div>
+        <ul class="plan-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Qualidade HD/4K</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Perfil exclusivo no seu nome</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>PIN de segurança pessoal</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Activação imediata</li>
+        </ul>
+        <button class="plan-select-btn">Seleccionar este plano</button>
+      </div>
+
+      <!-- Combo -->
+      <div class="plan-card cb" id="pc-cb" onclick="selectPlan('cb')">
+        <div class="plan-best">Melhor valor</div>
+        <div class="plan-logo gold">COMBO</div>
+        <div class="plan-sub">Netflix + Prime Video · 30 dias</div>
+        <div class="plan-price"><sup>MZN</sup>479</div>
+        <div class="plan-price-note">por mês · poupa 59 MZN</div>
+        <ul class="plan-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Netflix 4K incluído</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Prime Video incluído</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Dois perfis com PIN</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Activação imediata</li>
+        </ul>
+        <button class="plan-select-btn">Seleccionar este plano</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="wrap">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Processo</div>
+      <div class="sec-title">Como funciona</div>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="how-title">Escolha o plano</div>
+        <div class="how-desc">Seleccione Netflix, Prime Video ou o Combo promocional.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="how-title">Efectue o pagamento</div>
+        <div class="how-desc">Pague por M-Pesa ou transferência bancária e guarde o comprovativo.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/><path d="M15 9h.01M11 5H6a2 2 0 00-2 2v14l4-4h10a2 2 0 002-2v-3"/></svg>
+        </div>
+        <div class="how-title">Envie o comprovativo</div>
+        <div class="how-desc">Preencha o formulário com o código de confirmação do pagamento.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="how-title">Receba o acesso</div>
+        <div class="how-desc">Enviamos os dados de acesso para o seu email em instantes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT SECTION -->
+<div class="wrap">
+  <div class="pay-section" id="pay-section">
+    <div class="pay-header">
+      <h2>Pagamento</h2>
+      <p>Confirme o seu pedido e escolha a forma de pagamento</p>
+    </div>
+    <div class="summary-bar" id="summary-bar">
+      <div class="sum-chip"><strong id="s-plan">—</strong></div>
+      <div class="sum-chip"><strong id="s-qual">—</strong></div>
+      <div class="sum-chip">30 dias</div>
+      <div class="sum-total-chip" id="s-total">—</div>
+    </div>
+    <div class="pay-body">
+      <div class="pay-tabs">
+        <div class="ptab on" id="t-mp" onclick="swPay('mp')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          M-Pesa / e-Mola
+        </div>
+        <div class="ptab" id="t-bk" onclick="swPay('bk')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 9 12 2 21 9"/><path d="M3 9v11a1 1 0 001 1h16a1 1 0 001-1V9"/><line x1="9" y1="22" x2="9" y2="12"/><line x1="15" y1="22" x2="15" y2="12"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
+          Conta bancária
+        </div>
+      </div>
+
+      <!-- CAMPOS COMUNS (nome perfil, PIN, WhatsApp) sempre visíveis -->
+      <div class="form-grid" id="common-fields">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div class="field">
+            <label class="flabel">Nome desejado no perfil</label>
+            <input class="finput" type="text" placeholder="Ex: João Silva" id="c-perfil">
+          </div>
+          <div class="field">
+            <label class="flabel">Senha (PIN) desejada</label>
+            <input class="finput" type="text" placeholder="Ex: 1234 ou Joao@2025" id="c-pin">
+          </div>
+        </div>
+        <div class="field">
+          <label class="flabel">O seu número de WhatsApp (para receber o acesso)</label>
+          <input class="finput" type="tel" placeholder="8X XXX XXXX" id="c-wa">
+        </div>
+      </div>
+
+      <div style="height:1px; background:var(--border); margin:8px 0 20px;"></div>
+
+      <!-- M-Pesa / e-Mola form -->
+      <div class="f-panel on" id="f-mp">
+        <div class="info-block">
+          <strong>M-Pesa / e-Mola:</strong> Envie para o número <strong>84 669 8907</strong> (Nome: Tomás Zavale)<br>
+          Depois preencha abaixo com o código de confirmação que recebeu por SMS.
+        </div>
+        <div class="field">
+          <label class="flabel">Número M-Pesa / e-Mola utilizado no pagamento</label>
+          <input class="finput" type="tel" placeholder="8X XXX XXXX" id="mp-num">
+        </div>
+        <div class="field">
+          <label class="flabel">Código de confirmação recebido por SMS</label>
+          <input class="finput" type="text" placeholder="Ex: SI72XXXXXXX" id="mp-code">
+        </div>
+        <button class="submit-btn" onclick="doSubmit('mpesa')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.63 19.79 19.79 0 010 .98 2 2 0 012 .98h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.72-.72a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Enviar pedido pelo WhatsApp
+        </button>
+      </div>
+
+      <!-- Bank form -->
+      <div class="f-panel" id="f-bk">
+        <div class="info-block">
+          <strong>Millennium BIM</strong><br>
+          Titular: <strong>Tomás Zavale</strong> · NIB: <strong>0001 0000 0114 7153 914 57</strong><br>
+          Após a transferência, preencha abaixo com a referência do comprovativo.
+        </div>
+        <div class="field">
+          <label class="flabel">Nome completo do titular da conta</label>
+          <input class="finput" type="text" placeholder="Seu nome completo" id="bk-name">
+        </div>
+        <div class="field">
+          <label class="flabel">Referência / número de comprovativo</label>
+          <input class="finput" type="text" placeholder="Número de referência da transferência" id="bk-ref">
+        </div>
+        <button class="submit-btn" onclick="doSubmit('banco')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.63 19.79 19.79 0 010 .98 2 2 0 012 .98h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.72-.72a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Enviar pedido pelo WhatsApp
+        </button>
+      </div>
+
+      <!-- Success -->
+      <div class="success-box" id="suc">
+        <div class="suc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="suc-title">Pedido enviado!</div>
+        <p class="suc-sub">O seu pedido foi enviado para o nosso WhatsApp. Iremos confirmar o pagamento e activar o acesso em breve.</p>
+        <div style="background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:14px 18px; font-size:0.8rem; color:var(--muted); margin:0 auto 24px; max-width:320px; line-height:1.6; text-align:left;">
+          <strong style="color:var(--text); display:block; margin-bottom:4px;">Próximos passos:</strong>
+          1. Receberá uma mensagem de confirmação no WhatsApp<br>
+          2. O acesso é activado assim que o pagamento é verificado<br>
+          3. Guarde o seu PIN num local seguro
+        </div>
+        <button class="submit-btn" style="max-width:220px; margin:0 auto" onclick="doReset()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+          Novo pedido
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<section class="security-section">
+  <div class="wrap">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Segurança</div>
+      <div class="sec-title">Regras do grupo</div>
+    </div>
+    <div class="security-card">
+      <div class="sec-list">
+        <div class="sec-item">
+          <div class="sec-item-icon si-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="sec-item-text">
+            <strong>Único vendedor autorizado</strong>
+            <span>Contacte apenas o Administrador oficial do grupo no privado. Nunca partilhe dados de pagamento com mais ninguém.</span>
+          </div>
+        </div>
+        <div class="sec-item">
+          <div class="sec-item-icon si-red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </div>
+          <div class="sec-item-text">
+            <strong>Não confie em números desconhecidos</strong>
+            <span>Nenhum outro número enviará mensagem privada em nome da StreamVibe. Se receber, é golpe — ignore e reporte.</span>
+          </div>
+        </div>
+        <div class="sec-item">
+          <div class="sec-item-icon si-yellow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="sec-item-text">
+            <strong>Isenção de responsabilidade</strong>
+            <span>A StreamVibe não se responsabiliza por golpes aplicados por terceiros que se façam passar por nós.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP CTA -->
+<div class="wrap">
+  <a href="https://chat.whatsapp.com/GD6XQW3BacO10Ct3v1nl9t" target="_blank" class="wa-cta">
+    <div class="wa-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+    <div class="wa-text">
+      <strong>Entrar no grupo oficial da StreamVibe</strong>
+      <span>Provas de entrega · referências de clientes · suporte · novidades e promoções</span>
+    </div>
+    <div class="wa-arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <strong>StreamVibe</strong> · Streaming premium em Moçambique<br>
+    Suporte: WhatsApp <strong>+258 83 374 1699</strong>
+  </div>
+</footer>
+
+<script>
+  // ── CATÁLOGO DINÂMICO (TMDB API) ───────────────────────────────────────
+  // Dados (títulos, sinopses, géneros, notas) vêm da API pública da TMDB.
+  // Sem posters/artwork oficiais — usamos gradientes próprios por design,
+  // para evitar reproduzir material protegido por direitos de autor.
+  //
+  // Chave gratuita da TMDB (v3). Para obter a tua própria chave grátis:
+  // https://www.themoviedb.org/settings/api
+  const TMDB_API_KEY = 'COLOCA_AQUI_A_TUA_CHAVE_TMDB';
+
+  const GRADIENTS = [
+    'linear-gradient(135deg,#3a0d0d,#7a1414,#1a0505)',
+    'linear-gradient(135deg,#0d1f3a,#14497a,#05121a)',
+    'linear-gradient(135deg,#3a2a0d,#7a5414,#1a0f05)',
+    'linear-gradient(135deg,#1f0d3a,#49147a,#12051a)',
+    'linear-gradient(135deg,#0d3a1f,#147a49,#051a12)',
+    'linear-gradient(135deg,#3a0d2a,#7a1454,#1a0512)',
+    'linear-gradient(135deg,#0d2a3a,#147a7a,#051a1a)',
+    'linear-gradient(135deg,#2a0d3a,#54147a,#0f051a)',
+  ];
+
+  const GENRE_MAP = {
+    28:'Acção', 12:'Aventura', 16:'Animação', 35:'Comédia', 80:'Crime',
+    99:'Documentário', 18:'Drama', 10751:'Família', 14:'Fantasia',
+    36:'História', 27:'Terror', 10402:'Música', 9648:'Mistério',
+    10749:'Romance', 878:'Ficção', 53:'Suspense', 10752:'Guerra',
+    37:'Western', 10759:'Acção', 10765:'Sci-Fi'
+  };
+
+  async function loadCatalog() {
+    const container = document.getElementById('catalog-scroll');
+    if (!TMDB_API_KEY || TMDB_API_KEY === 'COLOCA_AQUI_A_TUA_CHAVE_TMDB') {
+      console.warn('StreamVibe: configure a tua chave TMDB para activar o catálogo dinâmico.');
+      return; // mantém skeleton; evita chamadas com chave inválida
+    }
+    try {
+      const res = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${TMDB_API_KEY}&language=pt-PT`);
+      if (!res.ok) throw new Error('TMDB request failed: ' + res.status);
+      const data = await res.json();
+      const items = (data.results || []).filter(i => i.title || i.name).slice(0, 10);
+      if (!items.length) throw new Error('Sem resultados');
+      renderCatalog(items);
+    } catch (err) {
+      console.error('Erro ao carregar catálogo TMDB:', err);
+      // Mantém os cards skeleton visíveis silenciosamente em caso de falha,
+      // para não mostrar um estado de erro feio ao cliente final.
+    }
+  }
+
+  function renderCatalog(items) {
+    const container = document.getElementById('catalog-scroll');
+    container.innerHTML = '';
+    items.forEach((item, i) => {
+      const title = item.title || item.name;
+      const isTV = item.media_type === 'tv';
+      const genreIds = item.genre_ids || [];
+      const genreName = genreIds.map(g => GENRE_MAP[g]).filter(Boolean)[0] || (isTV ? 'Série' : 'Filme');
+      const rating = item.vote_average ? item.vote_average.toFixed(1) : null;
+      const gradient = GRADIENTS[i % GRADIENTS.length];
+      const platformLabel = isTV ? 'Série' : 'Filme';
+
+      const card = document.createElement('div');
+      card.className = 'title-card';
+      card.innerHTML = `
+        <div class="title-poster" style="background:${gradient};" title="${(item.overview || '').replace(/"/g,'')}">
+          ${rating ? `<div class="title-rating"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${rating}</div>` : ''}
+          <div class="title-genre">${platformLabel}</div>
+          <div class="title-name">${title}</div>
+        </div>
+        <div class="title-platform-bar"><span class="dot" style="background:${isTV ? 'var(--red2)' : 'var(--blue2)'}"></span><span>${platformLabel} · ${genreName}</span></div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  loadCatalog();
+</script>
+
+<script>
+  // Número do administrador StreamVibe (sem + e sem espaços)
+  const ADMIN_WA = '258833741699';
+
+  let cur = null;
+  const planData = {
+    nf: { label: 'Netflix 4K',             qual: '1 tela 4K Ultra HD', total: '279,00 MZN' },
+    pv: { label: 'Prime Video HD/4K',      qual: '1 tela HD/4K',       total: '239,00 MZN' },
+    cb: { label: 'Combo (Netflix + Prime)', qual: '2 plataformas 4K',   total: '479,00 MZN' }
+  };
+
+  function selectPlan(id) {
+    cur = id;
+    ['nf','pv','cb'].forEach(x => document.getElementById('pc-'+x).classList.remove('active'));
+    document.getElementById('pc-'+id).classList.add('active');
+    const d = planData[id];
+    document.getElementById('s-plan').textContent  = d.label;
+    document.getElementById('s-qual').textContent  = d.qual;
+    document.getElementById('s-total').textContent = d.total;
+    const ps = document.getElementById('pay-section');
+    ps.classList.add('visible');
+    setTimeout(() => ps.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
+  }
+
+  function swPay(m) {
+    ['mp','bk'].forEach(x => {
+      document.getElementById('t-'+x).classList.remove('on');
+      document.getElementById('f-'+x).classList.remove('on');
+    });
+    document.getElementById('t-'+m).classList.add('on');
+    document.getElementById('f-'+m).classList.add('on');
+  }
+
+  function doSubmit(metodo) {
+    if (!cur) { alert('Por favor seleccione um plano primeiro.'); return; }
+
+    // Campos comuns
+    const perfil = document.getElementById('c-perfil').value.trim();
+    const pin    = document.getElementById('c-pin').value.trim();
+    const waNum  = document.getElementById('c-wa').value.trim();
+
+    if (!perfil) { alert('Por favor indique o nome desejado no perfil.'); return; }
+    if (!pin)    { alert('Por favor indique a senha (PIN) desejada.'); return; }
+    if (!waNum)  { alert('Por favor indique o seu número de WhatsApp.'); return; }
+
+    const d = planData[cur];
+    let comprovativo = '';
+
+    if (metodo === 'mpesa') {
+      const num  = document.getElementById('mp-num').value.trim();
+      const code = document.getElementById('mp-code').value.trim();
+      if (!num || !code) { alert('Por favor preencha o número e o código de confirmação M-Pesa/e-Mola.'); return; }
+      comprovativo = `📱 *Método:* M-Pesa / e-Mola\n📞 *Número usado:* ${num}\n🔑 *Código confirmação:* ${code}`;
+    } else {
+      const nome = document.getElementById('bk-name').value.trim();
+      const ref  = document.getElementById('bk-ref').value.trim();
+      if (!nome || !ref) { alert('Por favor preencha o nome e a referência da transferência.'); return; }
+      comprovativo = `🏦 *Método:* Transferência Bancária (Millennium BIM)\n👤 *Titular:* ${nome}\n🔑 *Referência:* ${ref}`;
+    }
+
+    // Montar mensagem para o admin
+    const msg =
+`🍿 *NOVO PEDIDO — StreamVibe*
+
+📦 *Plano:* ${d.label}
+💰 *Valor:* ${d.total}
+⏳ *Duração:* 30 dias
+
+👤 *Nome do perfil:* ${perfil}
+🔒 *PIN desejado:* ${pin}
+💬 *WhatsApp do cliente:* +258 ${waNum}
+
+${comprovativo}
+
+---
+_Pedido enviado pelo site streamvibe.com_`;
+
+    const url = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+
+    // Mostrar success
+    document.getElementById('common-fields').style.display = 'none';
+    document.getElementById('f-mp').classList.remove('on');
+    document.getElementById('f-bk').classList.remove('on');
+    document.querySelectorAll('.pay-tabs, .f-panel, #common-fields, div[style*="height:1px"]').forEach(el => el.style.display='none');
+    document.getElementById('suc').classList.add('on');
+    document.getElementById('suc').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function doReset() {
+    cur = null;
+    ['nf','pv','cb'].forEach(x => document.getElementById('pc-'+x).classList.remove('active'));
+    document.getElementById('pay-section').classList.remove('visible');
+    document.getElementById('suc').classList.remove('on');
+    document.getElementById('common-fields').style.display = '';
+    document.querySelectorAll('.pay-tabs').forEach(el => el.style.display='');
+    document.querySelectorAll('.f-panel').forEach(el => { el.classList.remove('on'); el.style.display=''; });
+    swPay('mp');
+    // Limpar campos
+    ['c-perfil','c-pin','c-wa','mp-num','mp-code','bk-name','bk-ref'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.value = '';
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
