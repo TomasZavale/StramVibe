@@ -918,6 +918,10 @@
     document.getElementById('s-plan').textContent  = d.label;
     document.getElementById('s-qual').textContent  = d.qual;
     document.getElementById('s-total').textContent = d.total;
+    gtag('event', 'select_plan', {
+    plan_id: id,
+    plan_name: d.label
+    });
     const ps = document.getElementById('pay-section');
     ps.classList.add('visible');
     setTimeout(() => ps.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
@@ -977,6 +981,14 @@ ${comprovativo}
 _Pedido enviado pelo site streamvibemz.vercel.app_`;
 
     const url = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(msg)}`;
+
+    gtag('event', 'purchase_intent', {
+     plan_id: cur,
+     plan_name: d.label,
+     payment_method: metodo,
+     currency: 'MZN'
+    });
+   
     window.open(url, '_blank');
 
     // Mostrar success
